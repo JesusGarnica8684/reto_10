@@ -91,7 +91,7 @@ def mult_matrix(m1, m2):
     columnas_m2 = len(m2[0])
     matrizr = [[0 for _ in range(columnas_m2)] for _ in range(filas_m1)]
     for i in range(filas_m1): # Itera sobre las filas de la primera matriz
-        for j in range(columnas_m2): # Itera sobre las columnas de la segunda matriz
+        for j in range(columnas_m2): #Itera sobre las columnas de la segunda matriz
             for k in range(columnas_m1): # Itera para realizar la multiplicación y suma
                 matrizr[i][j] += m1[i][k] * m2[k][j]
     return matrizr
@@ -116,17 +116,56 @@ if __name__ == "__main__":
     print("\nMatriz 2:")
     matrix_to_screen(matrizDos)
     # Operar las matrices
-    matrizsum = mult_matrix(matrizUno, matrizDos)
-    print("\nResultado de la suma:")
-    matrix_to_screen(matrizsum)
+    matrizmult = mult_matrix(matrizUno, matrizDos)
+    print("\nResultado del producto de las matrices:")
+    matrix_to_screen(matrizmult)
 
 ```
 
 3. Desarrolle un programa que permita obtener la  [matriz transpuesta](https://es.wikipedia.org/wiki/Matriz_transpuesta) de una matriz ingresada. El programa debe validar las condiciones necesarias para ejecutar la operación.
 
 ```python
+import random
+
+def matrix(filas, columnas):
+    matriz = []
+    for i in range(filas):
+        fila = []
+        for j in range(columnas):
+            valor = random.randint(1, 10)  # Genera un valor aleatorio dentro de uno y diez
+            fila.append(valor)
+        matriz.append(fila)
+    return matriz
+
+def matrix_to_screen(matriz):
+    for i in range(len(matriz)): 
+        print(matriz[i])
+
+def matriz_trans(matriz):
+    filas = len(matriz)
+    columnas = len(matriz[0])
+    transpuesta = [[0 for _ in range(filas)] for _ in range(columnas)]  # Crea una matriz vacía con dimensiones invertidas
+    for i in range(filas):
+        for j in range(columnas):
+            transpuesta[j][i] = matriz[i][j]  # Intercambia filas por columnas
+    return transpuesta
 
 
+if __name__ == "__main__":
+    # Solicitar dimensiones de las matrices
+    filas = int(input("Ingrese el número de filas de la matriz: "))
+    columnas = int(input("Ingrese el número de columnas de la matriz: "))
+
+    matrizOg = matrix(filas, columnas)
+
+    # Mostrar las matrices ingresada generadas
+    print("\nMatriz original:")
+    matrix_to_screen(matrizOg)
+
+    # Operar las matrices
+    matrizT = matriz_trans(matrizOg)
+    print("\nMatriz transpuesta:")
+    matrix_to_screen(matrizT)
 ```
 
 4. Desarrollar un programa que sume los elementos de una columna dada de una matriz.
